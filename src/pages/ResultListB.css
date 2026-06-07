@@ -1,0 +1,162 @@
+/* ResultListB — 카드형 리스트 (표이미지 표절검사 스타일) */
+
+/* ══ 카드 리스트 ══ */
+.rlc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.rlc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #FAFAFA;
+  border-bottom: 1px solid #F4F5F6;
+  border-radius: 4px;
+  min-height: 72px;
+}
+
+/* 체크박스 */
+.rlc-item > label { flex-shrink: 0; }
+
+/* 문서명 + 검사일 */
+.rlc-item__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rlc-item__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #3E4448;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rlc-item__meta {
+  font-size: 14px;
+  font-weight: 400;
+  color: #6A7282;
+}
+.rlc-item__meta-label {
+  font-weight: 600;
+}
+.rlc-item__meta-sep {
+  margin: 0 8px;
+  color: #D0D2D4;
+}
+
+/* 미확인 참고문헌 수 */
+.rlc-item__count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 180px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: 60px;
+}
+.rlc-item__count-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+.rlc-item__count-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+}
+.rlc-item__count-num--alert {
+  color: #ef4444;
+}
+.rlc-item__count-unit {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 배지: 검사중 / 검사실패 */
+.rlc-item__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.rlc-item__badge--processing {
+  color: #d97706;
+  background: #fef3c7;
+}
+.rlc-item__badge--error {
+  color: #dc2626;
+  background: #fee2e2;
+}
+
+/* 결과 확인 버튼 */
+.rlc-item__action {
+  flex-shrink: 0;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+}
+.rlc-result-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #00C2FF;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.rlc-result-btn:hover {
+  background: #00A8DD;
+}
+.rlc-result-btn--disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #C9CDD2;
+  white-space: nowrap;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ══ 하단 삭제 + 페이지네이션 ══ */
+.rl-bottom-bar .rl-bottom-actions {
+  order: 1;
+  margin-left: auto;
+}
+.rl-action-btn--danger {
+  height: 32px;
+  padding: 0 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: #FF4F79;
+  border: none;
+  cursor: pointer;
+  font-family: Pretendard, sans-serif;
+}
+.rl-action-btn--danger:hover {
+  background: #e8446d;
+}

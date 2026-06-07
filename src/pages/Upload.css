@@ -1,0 +1,309 @@
+/* Upload — 출처 검사 문서 업로드 (CK 스타일 매칭) */
+
+.upl-page {
+  padding: var(--layout-padding-y, 32px) var(--layout-padding-x, 40px) 48px;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ── Title row ── */
+.upl-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.upl-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  margin: 0;
+}
+
+/* ── 3-step guide ── */
+.upl-steps {
+  display: flex;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 36px;
+}
+
+.upl-step-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 28px 20px 24px;
+  text-align: center;
+  border-right: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+.upl-step-card:last-child {
+  border-right: none;
+}
+
+.upl-step-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-primary-500, #00c2ff);
+  color: #fff;
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upl-step-name {
+  font-size: var(--text-heading-xxsmall, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+}
+
+.upl-step-desc {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-500, #6a7282);
+  line-height: var(--leading-relaxed, 1.5);
+}
+
+/* ── Form rows (horizontal label:value) ── */
+.upl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.upl-form-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-gray-50, #f4f5f6);
+}
+
+.upl-form-row:last-child {
+  border-bottom: none;
+}
+
+.upl-form-label {
+  min-width: 100px;
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  padding-top: 2px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.upl-form-label-icon {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-primary-500, #00c2ff);
+  cursor: help;
+}
+
+.upl-form-value {
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Radio / Checkbox wraps ── */
+.upl-radio-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+}
+
+.upl-radio,
+.upl-check {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-body-medium, 1rem);
+  color: var(--color-gray-800, #3e4448);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.upl-radio input[type="radio"],
+.upl-check input[type="checkbox"] {
+  accent-color: var(--color-primary-500, #00c2ff);
+  cursor: pointer;
+  width: 17px;
+  height: 17px;
+}
+
+.upl-check-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+}
+
+/* 검사 유형 체크박스 */
+.upl-check.check-type-style span,
+.upl-check.check-type-validity span {
+  font-weight: 600;
+}
+
+/* Colored checkbox labels matching CK */
+.upl-check.scope-format span { color: var(--color-primary-600, #0097d4); font-weight: 600; }
+.upl-check.scope-recency span { color: var(--color-warning-600, #ea580c); font-weight: 600; }
+.upl-check.scope-bias span { color: var(--color-danger-500, #ef4444); font-weight: 600; } /* was #e5004f */
+.upl-check.scope-format input { accent-color: var(--color-primary-500, #00c2ff); }
+.upl-check.scope-recency input { accent-color: var(--color-warning-600, #ea580c); }
+.upl-check.scope-bias input { accent-color: var(--color-danger-500, #ef4444); } /* was #e5004f */
+
+/* ── File row ── */
+.upl-file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upl-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  border: 1px solid var(--color-primary-500, #00c2ff);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--color-primary-500, #00c2ff);
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.upl-file-btn:hover {
+  background: var(--color-primary-500, #00c2ff);
+  color: #fff;
+}
+
+.upl-file-placeholder {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-500, #6a7282);
+  padding: 8px 14px;
+  background: var(--color-gray-50, #f4f5f6);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.upl-file-name {
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 600;
+  color: var(--color-gray-800, #3e4448);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.upl-file-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-gray-100, #e6e8ea);
+  color: var(--color-gray-500, #6a7282);
+  font-size: var(--text-body-small, .875rem);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.upl-file-remove:hover {
+  background: var(--color-gray-500, #6a7282);
+  color: #fff;
+}
+
+/* ── Submit row ── */
+.upl-submit-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+}
+
+.upl-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 28px;
+  border: none;
+  border-radius: 8px;
+  background: var(--color-primary-500, #00c2ff);
+  color: #fff;
+  font-size: var(--text-heading-xxsmall, 1rem);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.upl-submit-btn:hover:not(:disabled) {
+  background: var(--color-primary-600, #0097d4);
+}
+
+.upl-submit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ── Form wrapper (for overlay positioning) ── */
+.upl-form-wrapper {
+  position: relative;
+}
+
+/* ── Uploading overlay ── */
+.upl-uploading-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  border-radius: 8px;
+  animation: fadeIn 0.2s ease;
+}
+
+.upl-uploading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 32px 48px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.upl-uploading-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-gray-100, #e6e8ea);
+  border-top-color: var(--color-primary-500, #00c2ff);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.upl-uploading-msg {
+  margin: 0;
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 600;
+  color: var(--color-gray-800, #3e4448);
+}
