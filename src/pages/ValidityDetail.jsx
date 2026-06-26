@@ -217,6 +217,11 @@ export default function ValidityDetail({ embedded = false, hideInfo = embedded }
             <span key={x.label} className={`det-type-tag ${x.t}`}>{x.label} {x.count}건</span>
           ))}
         </div>
+
+        {/* 만족도 조사 */}
+        <div className="det-survey-link">
+          <span>ⓘ 만족도 조사에 참여해 주세요!</span>
+        </div>
       </div>
 
       {/* ══ 참고문헌 실재 여부 확인 상세 결과 ══ */}

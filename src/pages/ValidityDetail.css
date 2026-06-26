@@ -232,6 +232,18 @@
 /* 기타 */
 .det-type-tag.unknown, .det-type-tag.dataset { background: #f4f5f6; color: #6a7282; border-color: #e6e8ea; }
 
+/* 만족도 조사 링크 */
+.det-survey-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.det-survey-link span {
+  font-size: 14px;
+  color: var(--ck-cyan);
+  cursor: pointer;
+}
+
 /* ── Info Note (unified with sc-info-box) ── */
 .det-info-note {
   display: flex;
