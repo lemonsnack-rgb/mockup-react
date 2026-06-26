@@ -1,0 +1,196 @@
+/* Sidebar — CopyKiller Campus left nav
+   캠퍼스 실측값 기반: 264px, padding 32px 24px, 메뉴 16px/600 h40 */
+
+.ck-side {
+  width: 264px;
+  flex-shrink: 0;
+  height: 100vh;
+  background: #fff;
+  border-right: 1px solid var(--color-gray-100, #e9e9ea);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  padding: 32px 24px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+/* ── Header row (로고 + 언어 선택) ── */
+.ck-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.ck-logo {
+  display: flex;
+  align-items: center;
+}
+
+.ck-logo-img {
+  width: 215px;
+  height: 30px;
+  object-fit: contain;
+  object-position: left;
+}
+
+.ck-lang-label {
+  display: inline-block;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-normal, 400);
+  color: var(--color-gray-400, #99a1af);
+  border: 1px solid var(--color-gray-400, #99a1af);
+  border-radius: 4px;
+  padding: 2px 18px 2px 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%2399a1af' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+}
+
+/* ── Section heading (숨김 — 캠퍼스: 1px) ── */
+.ck-nav-heading {
+  font-size: 1px;
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-gray-800, #3e4448);
+  overflow: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* ── Nav body ── */
+.ck-side-body {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Nav item — 캠퍼스 실측: 16px/600, h40, pl16, radius 8 ── */
+.ck-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 4px 16px;
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-gray-500, #6a7282);
+  text-decoration: none;
+  border-radius: 8px;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.ck-nav-item:hover {
+  background: rgba(39, 39, 44, 0.05);
+  color: var(--color-gray-800, #3e4448);
+}
+
+.ck-nav-item.active {
+  color: var(--color-primary-500, #00c2ff);
+  background: rgba(39, 39, 44, 0.05);
+}
+
+.ck-nav-item-label {
+  flex: 1;
+}
+
+.ck-nav-item-arrow {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-primary-500, #00c2ff);
+  flex-shrink: 0;
+  font-weight: var(--font-weight-bold, 700);
+}
+
+/* (Badges replaced by SVG icons in JSX) */
+
+/* ── SVG 뱃지 아이콘 (New/Beta/Hot) ── */
+.ck-icon-badge {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ── 메뉴 아이콘 (20x20) ── */
+.ck-icon-menu {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ── 관리자페이지 (아이콘 + 배경) ── */
+.ck-nav-item--admin {
+  background: var(--color-gray-700, #464c53);
+  color: #fff;
+}
+
+.ck-nav-item--admin:hover {
+  background: var(--color-gray-700, #464c53);
+  opacity: 0.88;
+  color: #fff;
+}
+
+.ck-nav-item--admin .ck-icon-menu {
+  color: #fff;
+}
+
+/* ── Utils 하단 메뉴 (아이콘 포함) ── */
+.ck-nav-item--utils {
+  color: var(--color-gray-700, #464c53);
+}
+
+.ck-nav-item--utils .ck-icon-menu {
+  color: var(--color-gray-700, #464c53);
+}
+
+/* ── Spacer ── */
+.ck-side-spacer {
+  flex: 1;
+}
+
+/* (Admin btn and sub items now use .ck-nav-item--admin and .ck-nav-item--utils) */
+
+/* ── Divider ── */
+.ck-side-divider {
+  height: 1px;
+  background: var(--color-gray-100, #e6e8ea);
+  margin: 4px 0;
+  flex-shrink: 0;
+}
+
+/* ── Collapse toggle ── */
+.ck-side-toggle {
+  position: absolute;
+  top: 50%;
+  right: -14px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--color-gray-500, #6a7282);
+  font-size: 16px;
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1;
+  transition: background 0.15s;
+  font-family: var(--font-sans);
+  padding: 0;
+  z-index: 10;
+}
+
+.ck-side-toggle:hover {
+  background: var(--color-gray-50, #f4f5f6);
+  color: var(--color-gray-800, #3e4448);
+}

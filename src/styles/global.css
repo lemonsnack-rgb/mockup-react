@@ -1,0 +1,96 @@
+@import "tailwindcss";
+@import "@muhayu/ck-ui/foundation.css";
+@source '../../node_modules/@muhayu/ck-ui/dist';
+@plugin "tailwindcss-animate";
+@import './variables.css';
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-sans,'Pretendard',sans-serif);font-size:var(--text-body-medium,16px);background:var(--color-black-100, #e9e9ea);color:var(--color-gray-800,#3e4448);line-height:var(--leading-relaxed,1.5);-webkit-font-smoothing:antialiased}
+
+/* ══════════════════════════════════════════
+   Layout — 캠퍼스 실측 기준
+   main padding: 32px 40px → 내부 콘텐츠 1168px
+   ══════════════════════════════════════════ */
+:root {
+  --layout-padding-x: 40px;
+  --layout-padding-y: 32px;
+  --layout-padding: var(--layout-padding-y) var(--layout-padding-x);
+}
+
+/* Utility */
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Toast — foundation tokens */
+.toast{position:fixed;bottom:-60px;left:50%;transform:translateX(-50%);background:var(--color-gray-900,#101828);color:#fff;padding:10px 24px;border-radius:8px;font-size:var(--text-body-small,.875rem);font-weight:var(--font-weight-semibold,600);z-index:var(--z-index-toast,130);transition:bottom .3s ease;box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.toast.show{bottom:30px}
+
+/* ══════════════════════════════════════════
+   Buttons — CK Design System (foundation tokens)
+   캠퍼스 실측: h32, 14px bold, px 12, radius 8
+   ══════════════════════════════════════════ */
+
+/* Base */
+.ck-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 12px;border-radius:8px;font-size:var(--text-body-small,.875rem);font-weight:var(--font-weight-bold,700);font-family:var(--font-sans);cursor:pointer;white-space:nowrap;transition:all .15s ease;border:1px solid var(--color-gray-100,#e6e8ea);background:#fff;color:var(--color-gray-800,#3e4448)}
+.ck-btn:hover{background:var(--color-gray-50,#f4f5f6)}
+.ck-btn svg{width:14px;height:14px;flex-shrink:0}
+
+/* Variant: primary (filled cyan) */
+.ck-btn.primary{background:var(--color-primary-500,#00c2ff);color:#fff;border-color:var(--color-primary-500,#00c2ff)}
+.ck-btn.primary:hover{background:var(--color-primary-600,#0097d4)}
+.ck-btn.primary:disabled{opacity:.45;cursor:not-allowed}
+
+/* Variant: outline-primary */
+.ck-btn.outline-primary{background:transparent;color:var(--color-primary-500,#00c2ff);border-color:var(--color-primary-500,#00c2ff)}
+.ck-btn.outline-primary:hover{background:var(--color-primary-50,#effaff)}
+
+/* Variant: danger */
+.ck-btn.danger{background:#fff1f2;color:var(--color-danger-600,#dc2626);border-color:var(--color-danger-300,#fca5a5)}
+.ck-btn.danger:hover{background:var(--color-danger-100,#fee2e2)}
+
+/* Variant: gray (admin) */
+.ck-btn.gray{background:var(--color-gray-700,#464c53);color:#fff;border-color:var(--color-gray-700,#464c53)}
+.ck-btn.gray:hover{opacity:.9}
+
+/* Size: md (larger buttons — upload, submit) */
+.ck-btn.md{height:40px;padding:0 20px;font-size:var(--text-body-small,.875rem)}
+
+/* Size: lg */
+.ck-btn.lg{height:44px;padding:0 28px;font-size:var(--text-body-medium,1rem)}
+
+/* ══════════════════════════════════════════
+   Badge — CK Design System (foundation tokens)
+   캠퍼스 실측: inline, 13px semibold, px 12, radius 10
+   ══════════════════════════════════════════ */
+.ck-badge{display:inline-block;padding:2px 12px;border-radius:10px;font-size:var(--text-body-small,.875rem);font-weight:var(--font-weight-semibold,600);line-height:20px;white-space:nowrap}
+.ck-badge.done{color:var(--color-success-700,#0078ab);background:var(--color-success-50,#effaff)}
+.ck-badge.processing{color:var(--color-warning-600,#ea580c);background:var(--color-warning-50,#fff7ed)}
+.ck-badge.error{color:var(--color-danger-600,#dc2626);background:var(--color-danger-50,#fef2f2)}
+
+/* ══════════════════════════════════════════
+   Select — CK Design System (foundation tokens)
+   캠퍼스 실측: h32, 14px, border #a9a8aa, radius 8, px 12/40
+   ══════════════════════════════════════════ */
+.ck-select{height:32px;padding:0 40px 0 12px;border:1px solid var(--color-gray-400,#99a1af);border-radius:8px;font-size:var(--text-body-small,.875rem);font-family:var(--font-sans);color:var(--color-gray-800,#3e4448);background:#fff;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23939395' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.ck-select:focus{outline:none;border-color:var(--color-primary-500,#00c2ff)}
+
+/* ══════════════════════════════════════════
+   Table — CK Design System (foundation tokens)
+   캠퍼스 실측: 16px body, 13px header, border #e6e8ea
+   ══════════════════════════════════════════ */
+.ck-table{width:100%;border-collapse:collapse;table-layout:fixed}
+.ck-table thead th{background:var(--color-gray-50,#f4f5f6);font-size:var(--text-body-small,.875rem);font-weight:var(--font-weight-bold,700);color:var(--color-gray-500,#6a7282);padding:12px 10px;text-align:center;border-bottom:1px solid var(--color-gray-100,#e6e8ea);white-space:nowrap}
+.ck-table tbody td{font-size:var(--text-body-medium,1rem);color:var(--color-gray-800,#3e4448);padding:14px 10px;text-align:center;border-bottom:1px solid var(--color-gray-50,#f4f5f6);vertical-align:middle}
+.ck-table tbody tr:last-child td{border-bottom:none}
+.ck-table tbody tr:hover td{background:var(--color-gray-50,#f4f5f6)}
+
+/* ══════════════════════════════════════════
+   Legacy compat — 기존 .ck-fbtn → .ck-btn 전환용
+   ══════════════════════════════════════════ */
+.ck-fbtn{display:inline-flex;align-items:center;gap:6px;padding:0 16px;height:40px;border-radius:8px;font-size:var(--text-body-medium,1rem);font-weight:var(--font-weight-bold,700);font-family:var(--font-sans);cursor:pointer;border:1px solid var(--color-gray-100,#e6e8ea);background:#fff;color:var(--color-gray-800,#3e4448)}
+.ck-fbtn:hover{background:var(--color-gray-50,#f4f5f6)}
+.ck-fbtn.gray{background:var(--color-gray-700);color:#fff;border-color:var(--color-gray-700)}
+.ck-fbtn.gray:hover{opacity:.9}
+.ck-fbtn.cyan{background:var(--color-primary-500);color:#fff;border-color:var(--color-primary-500)}
+.ck-fbtn.cyan:hover{background:var(--color-primary-600)}
+.ck-fbtn svg{width:16px;height:16px}

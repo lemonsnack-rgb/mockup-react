@@ -1,0 +1,564 @@
+/* ResultList — 출처 검사 결과 목록 */
+
+.rl-page {
+  padding: var(--layout-padding-y, 32px) var(--layout-padding-x, 40px) 48px;
+  animation: fadeIn 0.25s ease;
+}
+
+/* ── Title row ── */
+.rl-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.rl-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  margin: 0;
+}
+
+/* ── Upload buttons ── */
+.rl-upload-btns {
+  display: flex;
+  gap: 8px;
+}
+
+.rl-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-sans);
+  color: #fff;
+  background: var(--color-primary-500, #00c2ff);
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.rl-upload-btn:hover {
+  background: var(--color-primary-600, #0097d4);
+}
+
+.rl-upload-btn--b {
+  background: var(--color-brand-gk-500, #7c52f1);
+}
+
+.rl-upload-btn--b:hover {
+  background: var(--color-brand-gk-600, #763fe8);
+}
+
+/* ── Info banner ── */
+.rl-info-banner {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 14px 18px;
+  background: var(--color-primary-50, #effaff);
+  border: 1px solid var(--color-primary-200, #b6ecff);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: var(--text-body-small, .875rem);
+  line-height: var(--leading-relaxed, 1.5);
+  color: var(--color-gray-800, #3e4448);
+}
+
+.rl-info-banner strong {
+  font-weight: 600;
+  color: var(--color-primary-600, #0097d4);
+}
+
+.rl-info-icon {
+  flex-shrink: 0;
+  color: var(--color-primary-500, #00c2ff);
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* ── Check all ── */
+.rl-check-all {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-800, #3e4448);
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.rl-check-all input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ── Filter row ── */
+.rl-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+/* ── Select 공통 — CK tokens ── */
+.rl-select {
+  height: 32px;
+  padding: 0 40px 0 12px;
+  border: 1px solid var(--color-gray-400, #99a1af);
+  border-radius: 8px;
+  font-size: var(--text-body-small, .875rem);
+  font-family: var(--font-sans);
+  color: var(--color-gray-800, #3e4448);
+  background: #fff;
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23939395' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.rl-select:focus {
+  outline: none;
+  border-color: var(--color-primary-500, #00c2ff);
+}
+
+.rl-select-count {
+  margin-left: auto;
+}
+
+/* ── 날짜 입력 — CK tokens ── */
+.rl-date-input {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-gray-400, #99a1af);
+  border-radius: 8px;
+  font-size: var(--text-body-small, .875rem);
+  font-family: var(--font-sans);
+  color: var(--color-gray-800, #3e4448);
+  background: #fff;
+  width: 150px;
+}
+
+.rl-date-input:focus {
+  outline: none;
+  border-color: var(--color-primary-500, #00c2ff);
+}
+
+.rl-date-input:disabled {
+  background: var(--color-gray-50, #f4f5f6);
+  color: var(--color-gray-500, #6a7282);
+  cursor: not-allowed;
+}
+
+.rl-date-sep {
+  color: var(--color-gray-500, #6a7282);
+  font-size: var(--text-body-small, .875rem);
+}
+
+/* ── 검색어 입력 ── */
+.rl-keyword-input {
+  flex: 1;
+  min-width: 180px;
+  height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  font-size: var(--text-body-small, .875rem);
+  font-family: inherit;
+  color: var(--color-gray-800, #3e4448);
+  background: #fff;
+}
+
+.rl-keyword-input:focus {
+  outline: none;
+  border-color: var(--color-primary-500, #00c2ff);
+}
+
+.rl-keyword-input::placeholder {
+  color: var(--color-gray-500, #6a7282);
+}
+
+/* ── 조회 버튼 — CK tokens ── */
+.rl-search-btn {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--color-primary-500, #00c2ff);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--color-primary-500, #00c2ff);
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.rl-search-btn:hover {
+  background: var(--color-primary-50, #effaff);
+}
+
+/* ── Table container ── */
+.rl-table-wrap {
+  background: #fff;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* ── Table ── */
+.rl-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+/* Column widths */
+.col-check    { width: 40px; }
+.col-date     { width: 120px; }
+.col-name     { /* remaining space */ }
+.col-status   { width: 90px; }
+.col-style    { width: 160px; }
+.col-validity { width: 190px; }
+
+/* ── Header row — CK tokens ── */
+.rl-table thead th {
+  background: var(--color-gray-50, #f4f5f6);
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-gray-500, #6a7282);
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+  white-space: nowrap;
+}
+
+.rl-table thead th.col-name {
+  text-align: left;
+  padding-left: 16px;
+}
+
+.rl-table thead th.col-check input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ── Body rows ── */
+.rl-table tbody td {
+  font-size: var(--text-body-medium, 1rem);
+  color: var(--color-gray-800, #3e4448);
+  padding: 14px 10px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-gray-50, #f4f5f6);
+  vertical-align: middle;
+}
+
+.rl-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.rl-table tbody tr:hover td {
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+.rl-table tbody td.col-name {
+  text-align: left;
+  padding-left: 16px;
+}
+
+.rl-table tbody td.col-check input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+/* ── Document name truncation ── */
+.rl-doc-name {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Status badge — CK tokens ── */
+.rl-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 10px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+/* ── 미검사 배지 ── */
+.rl-badge--unscanned {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 10px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: 20px;
+  white-space: nowrap;
+  color: var(--color-gray-500, #6a7282);
+  background: var(--color-gray-50, #f4f5f6);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+/* ── Check result cell ── */
+.rl-check-cell {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.rl-check-count {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-600, #58616a);
+  white-space: nowrap;
+}
+
+.rl-check-count strong {
+  color: var(--color-danger-500, #ef4444);
+  font-size: var(--text-body-medium, 1rem);
+}
+
+/* ── Detail link — CK tokens ── */
+.rl-detail-link {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-primary-500, #00c2ff);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.rl-detail-link:hover {
+  color: var(--color-primary-600, #0097d4);
+  text-decoration: underline;
+}
+
+/* ── Dash placeholder ── */
+.rl-dash {
+  color: var(--color-gray-500, #6a7282);
+  font-size: var(--text-body-small, .875rem);
+}
+
+/* ── Bottom bar ── */
+.rl-bottom-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+}
+
+.rl-bottom-actions {
+  display: flex;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.rl-bottom-spacer {
+  min-width: 80px;
+}
+
+/* ── Action buttons — CK tokens ── */
+.rl-action-btn {
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  background: #fff;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-bold, 700);
+  font-family: var(--font-sans);
+  color: var(--color-gray-800, #3e4448);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rl-action-btn:hover {
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+.rl-action-btn--danger {
+  border-color: var(--color-danger-300, #fca5a5);
+  color: var(--color-danger-600, #dc2626);
+  background: var(--color-danger-50, #fef2f2);
+}
+
+.rl-action-btn--danger:hover {
+  background: var(--color-danger-100, #fee2e2);
+}
+
+/* ── Pagination ── */
+.rl-pagination {
+  display: flex;
+  gap: 4px;
+}
+
+.rl-pagination button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 6px;
+  background: #fff;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 500;
+  font-family: inherit;
+  color: var(--color-gray-600, #58616a);
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rl-pagination button:hover:not(:disabled) {
+  background: var(--color-gray-50, #f4f5f6);
+  border-color: var(--color-primary-500, #00c2ff);
+  color: var(--color-primary-500, #00c2ff);
+}
+
+.rl-pagination button.active {
+  background: var(--color-primary-500, #00c2ff);
+  border-color: var(--color-primary-500, #00c2ff);
+  color: #fff;
+  font-weight: 700;
+}
+
+.rl-pagination button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ── Upload Popup (시안 B) ── */
+.rl-popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+
+.rl-popup {
+  width: 560px;
+  max-height: calc(100vh - 48px);
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popupSlideUp 0.25s ease;
+}
+
+@keyframes popupSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.rl-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+  background: var(--color-gray-50, #f4f5f6);
+  flex-shrink: 0;
+}
+
+.rl-popup-title {
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  margin: 0;
+}
+
+.rl-popup-close {
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  font-size: 20px;
+  color: var(--color-gray-500, #6a7282);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.rl-popup-close:hover {
+  background: var(--color-gray-100, #e6e8ea);
+  color: var(--color-gray-800, #3e4448);
+}
+
+.rl-popup-body {
+  padding: 16px 20px 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ── compact form overrides ── */
+.upl-form--compact .upl-form-row {
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+}
+
+.upl-form--compact .upl-form-label {
+  min-width: unset;
+  font-size: var(--text-body-small, .875rem);
+}
+
+.upl-form--compact .upl-radio-wrap {
+  gap: 4px 16px;
+}
+
+.upl-form--compact .upl-radio span,
+.upl-form--compact .upl-check span {
+  font-size: var(--text-body-small, .875rem);
+}
+
+.upl-form--compact .upl-radio input[type="radio"],
+.upl-form--compact .upl-check input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}
+
+.upl-form--compact .upl-file-row {
+  flex-wrap: wrap;
+}
+
+.upl-form--compact .upl-file-placeholder {
+  font-size: var(--text-body-xsmall, .75rem);
+}
+
+.upl-form--compact + .upl-submit-row {
+  margin-top: 16px;
+}
+
+.upl-form--compact + .upl-submit-row .upl-submit-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 10px 20px;
+}

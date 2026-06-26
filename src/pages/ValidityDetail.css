@@ -1,0 +1,1036 @@
+/* ValidityDetail -- 유효성 검사 상세 (full page) */
+
+.vd-page {
+  padding: 0;
+  animation: fadeIn 0.25s ease;
+  position: relative;
+}
+
+/* ── File header (matches sc-file-header) ── */
+.vd-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px var(--layout-padding-x, 40px);
+  background: #fff;
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.vd-check-type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: var(--font-weight-bold, 700);
+  color: var(--color-brand-gk-500, #7c52f1);
+  background: var(--color-brand-gk-50, #f7f2ff);
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.vd-file-name {
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 500;
+  color: var(--color-gray-800, #3e4448);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Content wrapper ── */
+.vd-content {
+  padding: var(--layout-padding, 32px 40px);
+}
+
+
+.vd-header-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.vd-header-actions .ck-fbtn {
+  height: 36px;
+  font-size: var(--text-body-small, .875rem);
+  gap: 6px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Summary Card (det-summary-card) ── */
+.det-summary-card {
+  background: var(--color-gray-50, #f4f5f6);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+
+.det-stats-row {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.det-stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+/* 미확인 강조 블록 */
+.det-stat-block--alert {
+  background: var(--color-danger-50, #fef2f2);
+  border: 2px solid var(--color-danger-200, #fca5a5);
+  border-radius: 8px;
+  padding: 12px 20px;
+}
+
+.det-stat-num {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.det-stat-unit {
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.det-stat-block--alert .det-stat-num {
+  font-size: 32px;
+}
+
+.det-stat-block--alert .det-stat-unit {
+  font-size: 18px;
+}
+
+.det-stat-num.total      { color: var(--color-gray-800, #3e4448); }
+.det-stat-num.exact      { color: var(--exact-color); }
+.det-stat-num.registered { color: var(--registered-color); }
+.det-stat-num.mismatch   { color: var(--mismatch-color); }
+.det-stat-num.unknown    { color: var(--unknown-color); }
+
+.det-stat-label {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-500, #6a7282);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.det-stat-label svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.det-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--color-gray-100, #e6e8ea);
+}
+
+/* Progress bar */
+.det-progress-bar {
+  height: 8px;
+  background: var(--color-gray-50, #f4f5f6);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.det-progress-seg { height: 100%; }
+.det-progress-seg.exact      { background: var(--exact-color); }
+.det-progress-seg.registered { background: var(--registered-color); }
+.det-progress-seg.mismatch   { background: var(--mismatch-color); }
+
+/* Type tags */
+.det-type-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.det-type-tag {
+  font-size: var(--text-body-small, .875rem);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  background: #fff;
+  color: var(--color-gray-600, #58616a);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+/* 유형별 태그 색상 — 검증 방식 기준 4그룹 */
+/* 학술 자료 */
+.det-type-tag.paper, .det-type-tag.thesis, .det-type-tag.book { background: var(--color-primary-50, #effaff); color: var(--color-primary-600, #0097d4); border-color: #c4eafc; }
+/* 공식 자료 */
+.det-type-tag.report, .det-type-tag.patent, .det-type-tag.standard, .det-type-tag.dataset { background: #ede9fe; color: #6d28d9; border-color: #ddd6fe; }
+/* 웹 자료 */
+.det-type-tag.webpage, .det-type-tag.news { background: #f0fdf4; color: #15803d; border-color: #bbf7d0; }
+/* 미분류 */
+.det-type-tag.unknown { background: #f4f5f6; color: #6a7282; border-color: #e6e8ea; }
+
+/* 만족도 조사 링크 */
+.det-survey-link {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+.det-survey-link span {
+  font-size: 14px;
+  color: var(--ck-cyan);
+  cursor: pointer;
+}
+
+/* ── Info Note (unified with sc-info-box) ── */
+.det-info-note {
+  display: flex;
+  gap: 10px;
+  padding: 16px 20px;
+  background: var(--color-gray-50, #f4f5f6);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: var(--text-body-small, .875rem);
+  line-height: 1.7;
+  color: var(--color-gray-800, #3e4448);
+}
+
+.det-info-icon {
+  color: var(--color-gray-500, #6a7282);
+  font-size: 10px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.det-info-content {
+  flex: 1;
+}
+
+.det-info-content p {
+  margin-bottom: 6px;
+}
+
+.det-info-note strong {
+  color: var(--color-gray-600, #58616a);
+  font-weight: 600;
+}
+
+.det-info-list {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.det-info-list li {
+  margin-bottom: 3px;
+}
+
+/* ── 판정 범례 ── */
+.det-verdict-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 20px;
+  margin-bottom: 8px;
+  font-size: var(--text-body-small, .875rem);
+  line-height: var(--leading-relaxed, 1.5);
+  color: var(--color-gray-600, #58616a);
+}
+
+.det-verdict-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.det-verdict-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+}
+
+.det-verdict-item.mismatch .det-verdict-dot   { background: var(--mismatch-color); }
+.det-verdict-item.registered .det-verdict-dot { background: var(--registered-color); }
+.det-verdict-item.exact .det-verdict-dot      { background: var(--exact-color); }
+
+.det-verdict-note {
+  font-size: var(--text-body-xsmall, .75rem);
+  color: var(--color-gray-400, #9a9ea4);
+  margin-top: 4px;
+  padding-top: 8px;
+  border-top: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+/* ── Filter Bar (det-ftab) ── */
+.det-filter-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+.det-filter-tabs {
+  display: flex;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.det-ftab {
+  padding: 8px 14px;
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 500;
+  color: var(--color-gray-500, #6a7282);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-right: none;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.det-ftab:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.det-ftab:last-child {
+  border-radius: 0 8px 8px 0;
+  border-right: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+.det-ftab:hover {
+  color: var(--color-gray-600, #58616a);
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+.det-ftab.active {
+  background: var(--color-primary-500, #00c2ff);
+  color: #fff;
+  border-color: var(--color-primary-500, #00c2ff);
+  font-weight: 700;
+}
+
+.det-ftab.active + .det-ftab {
+  border-left-color: var(--color-primary-500, #00c2ff);
+}
+
+.det-ftab .cnt {
+  font-size: var(--text-body-small, .875rem);
+  margin-left: 4px;
+}
+
+/* ── Reference Cards (det-ref-card) ── */
+.det-ref-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.det-ref-card {
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-bottom: none;
+  background: #fff;
+  transition: background 0.1s;
+  animation: fadeIn 0.25s ease both;
+}
+
+.det-ref-card:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.det-ref-card:last-child {
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 0 0 8px 8px;
+}
+
+.det-ref-card:only-child {
+  border-radius: 8px;
+  border-bottom: 1px solid var(--color-gray-100, #e6e8ea);
+}
+
+.det-ref-card:hover {
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+.det-ref-card.registered {
+  background: var(--registered-bg, #eff6ff);
+}
+
+.det-ref-card.editing {
+  background: var(--color-brand-gk-50, #f7f2ff);
+  border-color: var(--color-brand-gk-500, #7c52f1);
+}
+
+.det-ref-main {
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.det-ref-num {
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 600;
+  color: var(--color-gray-500, #6a7282);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.det-ref-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.det-ref-citation {
+  font-size: var(--text-body-medium, 1rem);
+  line-height: var(--leading-relaxed, 1.5);
+  color: var(--color-gray-800, #3e4448);
+  margin-bottom: 8px;
+  word-break: keep-all;
+}
+
+/* Type badge inline */
+.det-type-badge {
+  font-size: var(--text-body-xsmall, .75rem);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+/* 참고문헌 유형 배지 — 검증 방식 기준 4그룹 */
+/* 학술 자료: 논문(paper/thesis), 단행본(book) — CK DB 검증 */
+.det-type-badge.paper,
+.det-type-badge.thesis,
+.det-type-badge.book    { background: var(--color-primary-50, #effaff); color: var(--color-primary-600, #0097d4); }
+/* 공식 자료: 보고서, 특허, 표준문서, 데이터 — 기관/공식 발행 */
+.det-type-badge.report,
+.det-type-badge.patent,
+.det-type-badge.standard,
+.det-type-badge.dataset { background: #ede9fe; color: #6d28d9; }
+/* 웹 자료: 웹페이지, 뉴스 — 외부 링크 검증 */
+.det-type-badge.webpage,
+.det-type-badge.news    { background: #f0fdf4; color: #15803d; }
+/* 미분류 */
+.det-type-badge.unknown { background: #f4f5f6; color: #6a7282; }
+
+/* Metadata tags */
+.det-ref-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.det-ref-field-tag {
+  font-size: var(--text-body-xsmall, .75rem);
+  color: var(--color-gray-500, #6a7282);
+  background: var(--color-gray-50, #f4f5f6);
+  padding: 2px 7px;
+  border-radius: 4px;
+  border: 1px solid var(--color-gray-50, #f4f5f6);
+}
+
+.det-ref-field-tag strong {
+  font-weight: 600;
+  color: var(--color-gray-600, #58616a);
+}
+
+/* URL tag in metadata */
+.det-ref-field-tag.url {
+  background: var(--color-primary-50, #effaff);
+  border-color: var(--color-primary-50, #effaff);
+}
+
+.det-ref-field-tag.url a {
+  color: var(--color-primary-600, #0097d4);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.det-ref-field-tag.url a:hover {
+  text-decoration: underline;
+}
+
+/* 외부 링크 확인 link */
+.det-ck-link.online {
+  color: #92400e; /* TODO: no exact token — amber online link */
+}
+
+.det-ck-link.online:hover {
+  color: #78350f; /* TODO: no exact token — amber online link hover */
+}
+
+/* Match pills */
+.det-matched-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+
+.det-match-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.det-match-pill.ok { background: #dcfce7; color: #15803d; }
+.det-match-pill.ng { background: var(--color-danger-50, #fef2f2); color: var(--color-danger-600, #dc2626); }
+.det-match-pill.check { background: var(--color-gray-50, #f4f5f6); color: var(--color-gray-500, #6a7282); border: 1px solid var(--color-gray-200, #d5d8db); }
+
+/* Note text */
+.vd-note {
+  font-size: var(--text-body-xsmall, .75rem);
+  color: var(--color-gray-500, #6a7282);
+  margin-top: 6px;
+}
+
+.vd-note--registered {
+  color: var(--registered-color);
+  font-weight: 500;
+}
+
+/* Registered badge */
+.vd-registered-badge {
+  font-size: var(--text-body-xsmall, .75rem);
+  color: var(--registered-color);
+  font-weight: 700;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.vd-registered-badge.pending {
+  color: var(--registered-color);
+}
+
+/* 등록 완료 툴팁 */
+.vd-reg-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 2px;
+}
+
+.vd-reg-tooltip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-gray-200, #d5d8db);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: help;
+}
+
+.vd-reg-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: var(--color-gray-800, #3e4448);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.vd-reg-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 4px;
+  border: 5px solid transparent;
+  border-top-color: var(--color-gray-800, #3e4448);
+}
+
+.vd-reg-tooltip-wrap:hover .vd-reg-tooltip {
+  display: block;
+}
+
+/* Right column: status icon + label */
+.det-ref-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.det-status-icon {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.det-status-icon.exact      { background: var(--exact-color); }
+.det-status-icon.partial    { background: var(--partial-color); }
+.det-status-icon.mismatch   { background: var(--mismatch-color); }
+.det-status-icon.unknown    { background: var(--unknown-color); }
+.det-status-icon.registered { background: var(--registered-color); }
+
+.det-status-icon svg {
+  width: 13px;
+  height: 13px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+.det-status-icon.mismatch svg {
+  fill: none;
+  stroke: none;
+}
+
+.det-status-icon.mismatch svg rect,
+.det-status-icon.mismatch svg circle {
+  fill: #fff;
+}
+
+.det-status-label {
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  text-align: center;
+}
+
+.det-status-label.exact      { color: var(--exact-color); }
+.det-status-label.partial    { color: var(--partial-color); }
+.det-status-label.mismatch   { color: var(--mismatch-color); }
+.det-status-label.unknown    { color: var(--unknown-color); }
+.det-status-label.registered { color: var(--registered-color); }
+
+/* CK terms link */
+.det-ck-link {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-primary-600, #0097d4);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.det-ck-link:hover {
+  text-decoration: underline;
+}
+
+.det-ck-link svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ── Per-item registration button ── */
+.det-reg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--color-brand-gk-500, #7c52f1);
+  background: #fff;
+  color: var(--color-brand-gk-500, #7c52f1);
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+
+.det-reg-btn:hover {
+  background: var(--color-brand-gk-500, #7c52f1);
+  color: #fff;
+}
+
+.det-reg-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ── Edit area (inline metadata editing) ── */
+.det-edit-area {
+  padding: 0 20px 16px 62px;
+  display: none;
+  animation: fadeIn 0.2s ease;
+}
+
+.det-edit-area.show {
+  display: block;
+}
+
+.det-edit-grid {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 6px 12px;
+  background: #fff;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 6px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+}
+
+/* ── Edit area header / description ── */
+.det-edit-header {
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  margin-bottom: 6px;
+}
+
+.det-edit-desc {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-600, #58616a);
+  line-height: var(--leading-relaxed, 1.5);
+  margin-bottom: 14px;
+}
+
+.det-edit-section-label {
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  color: var(--color-gray-600, #58616a);
+  margin-bottom: 8px;
+  padding-left: 2px;
+}
+
+.det-edit-divider {
+  border-top: 1px solid var(--color-gray-50, #f4f5f6);
+  margin: 14px 0;
+}
+
+.det-edit-privacy {
+  font-size: var(--text-body-xsmall, .75rem);
+  color: var(--color-gray-500, #6a7282);
+  margin-bottom: 12px;
+}
+
+.det-edit-grid .k .req {
+  color: var(--color-danger-500, #ef4444); /* was #e53e3e */
+  margin-left: 2px;
+}
+
+.det-edit-grid .k {
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 600;
+  color: var(--color-gray-500, #6a7282);
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+}
+
+.det-edit-grid .v {
+  font-size: var(--text-body-small, .875rem);
+}
+
+.det-edit-grid input,
+.det-edit-grid select {
+  width: 100%;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: var(--text-body-small, .875rem);
+  font-family: inherit;
+  color: var(--color-gray-800, #3e4448);
+  background: #fff;
+}
+
+.det-edit-grid select {
+  height: 32px;
+  cursor: pointer;
+}
+
+.det-edit-grid input:focus,
+.det-edit-grid select:focus {
+  outline: none;
+  border-color: var(--color-brand-gk-500, #7c52f1);
+  box-shadow: 0 0 0 2px rgba(124, 82, 241, 0.15);
+}
+
+.det-edit-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.det-edit-save {
+  padding: 6px 18px;
+  border-radius: 6px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: var(--color-brand-gk-500, #7c52f1);
+  color: #fff;
+}
+
+.det-edit-save:hover {
+  opacity: 0.9;
+}
+
+.det-edit-cancel {
+  padding: 6px 18px;
+  border-radius: 6px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  background: #fff;
+  color: var(--color-gray-600, #58616a);
+}
+
+.det-edit-cancel:hover {
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+/* ── Loading overlay ── */
+.vd-loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vd-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-gray-100, #e6e8ea);
+  border-top-color: var(--color-primary-500, #00c2ff);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.vd-loading-text {
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 600;
+  color: var(--color-gray-600, #58616a);
+}
+
+/* ── Section title (matches sc-section-title) ── */
+.vd-section-title {
+  font-size: var(--text-heading-xxsmall, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  margin: 56px 0 14px;
+  padding-left: 10px;
+  border-left: 3px solid var(--color-primary-500, #00c2ff);
+  position: relative;
+}
+
+.vd-section-title::before {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: -3px;
+  right: 0;
+  border-top: 1px solid var(--color-gray-50, #f4f5f6);
+}
+
+.vd-section-title:first-child {
+  margin-top: 0;
+}
+
+.vd-section-title:first-child::before {
+  display: none;
+}
+
+/* ── 참고문헌 0건 안내 ── */
+.vd-empty-refs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
+  margin-bottom: 24px;
+  background: var(--color-gray-50, #f4f5f6);
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.vd-empty-refs-icon { margin-bottom: 4px; }
+
+.vd-empty-refs-title {
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 700;
+  color: var(--color-gray-600, #58616a);
+  margin: 0;
+}
+
+.vd-empty-refs-desc {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-500, #6a7282);
+  line-height: var(--leading-relaxed, 1.5);
+  margin: 0;
+}
+
+/* ── Check info table (matches sc-info-table) ── */
+.vd-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.vd-info-table th,
+.vd-info-table td {
+  padding: 12px 16px;
+  font-size: var(--text-body-small, .875rem);
+  text-align: left;
+  border-bottom: 1px solid var(--color-gray-50, #f4f5f6);
+}
+
+.vd-info-table th {
+  background: var(--color-gray-50, #f4f5f6);
+  font-weight: 700;
+  color: var(--color-gray-800, #3e4448);
+  width: 120px;
+  white-space: nowrap;
+}
+
+.vd-info-table td {
+  color: var(--color-gray-600, #58616a);
+}
+
+/* ── Confirm popup ── */
+.vd-confirm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.15s ease;
+}
+
+.vd-confirm-box {
+  background: #fff;
+  border-radius: 8px;
+  padding: 28px 32px;
+  min-width: 320px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.vd-confirm-box--wide { min-width: 400px; }
+
+.vd-confirm-icon { margin-bottom: 12px; }
+
+.vd-confirm-msg {
+  font-size: var(--text-body-medium, 1rem);
+  font-weight: 600;
+  color: var(--color-gray-800, #3e4448);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.vd-confirm-desc {
+  font-size: var(--text-body-small, .875rem);
+  color: var(--color-gray-500, #6a7282);
+  line-height: var(--leading-relaxed, 1.5);
+  margin-bottom: 24px;
+}
+
+.vd-confirm-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.vd-confirm-cancel {
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: 1px solid var(--color-gray-100, #e6e8ea);
+  background: #fff;
+  color: var(--color-gray-600, #58616a);
+  transition: background 0.15s;
+}
+
+.vd-confirm-cancel:hover {
+  background: var(--color-gray-50, #f4f5f6);
+}
+
+.vd-confirm-ok {
+  padding: 8px 24px;
+  border-radius: 6px;
+  font-size: var(--text-body-small, .875rem);
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: var(--color-brand-gk-500, #7c52f1);
+  color: #fff;
+  transition: opacity 0.15s;
+}
+
+.vd-confirm-ok:hover {
+  opacity: 0.9;
+}
+
+/* ── PDF capture: hide interactive elements ── */
+.vd-content.pdf-capture .det-filter-bar,
+.vd-content.pdf-capture .det-reg-btn,
+.vd-content.pdf-capture .det-edit-area {
+  display: none !important;
+}
+
+/* Button spinner */
+.vd-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  display: inline-block;
+}

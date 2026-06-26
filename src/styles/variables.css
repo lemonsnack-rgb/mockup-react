@@ -1,0 +1,32 @@
+/* CopyKiller Campus Design System — CSS Variables */
+:root {
+  --ck-cyan: #00c2ff;
+  --ck-cyan-dark: #00a8dd;
+  --ck-cyan-light: #f2fcff;
+  --ck-pink: #ff006b;
+  --ck-pink-bg: #fff1f4;
+  --ck-rate-orange: #ff971c;
+  --ck-purple: #7c52f1;
+  --ck-purple-light: #f3f0ff;
+  --exact-color: #00c2ff;
+  --exact-bg: #f2fcff;
+  --partial-color: #f59e0b;
+  --partial-bg: #fffbeb;
+  --mismatch-color: #ff4f79;
+  --mismatch-bg: #fff1f4;
+  --unknown-color: #939395;
+  --unknown-bg: #f0f0f0;
+  --registered-color: #ff971c;
+  --registered-bg: #fff8ef;
+  --bg: #e9e9ea;
+  --surface: #ffffff;
+  --surface-alt: #f7f8f8;
+  --border: #e9e9ea;
+  --border-light: #f0f0f0;
+  --text: #3e4448;
+  --text-sub: #656567;
+  --text-muted: #939395;
+  --admin-gray: #656567;
+  --footer-bg: #f7f8f8;
+  --radius: 8px;
+}

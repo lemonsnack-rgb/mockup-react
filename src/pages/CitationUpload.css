@@ -1,0 +1,244 @@
+.cu-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cu-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 64px 40px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cu-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cu-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.cu-desc {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Drop zone */
+.cu-dropzone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  border: 1px dashed #a9a8aa;
+  border-radius: 8px;
+  background: #fff;
+  transition: border-color 0.15s, border-style 0.15s;
+  cursor: default;
+}
+.cu-dropzone:hover {
+  border-style: solid;
+  border-color: var(--ck-cyan);
+}
+.cu-dropzone.drag-over {
+  border-style: solid;
+  border-color: var(--ck-cyan);
+  background: var(--ck-cyan-light);
+}
+
+.cu-dropzone-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+
+.cu-drop-text {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0;
+}
+
+.cu-btn-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.cu-upload-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--ck-cyan);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ck-cyan);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cu-upload-btn:hover { background: var(--ck-cyan-light); }
+
+.cu-btn-sep {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.cu-manual-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--ck-cyan);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ck-cyan);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cu-manual-btn:hover { background: var(--ck-cyan-light); }
+
+.cu-file-info {
+  margin-top: 20px;
+  color: #888;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Selected file indicator */
+.cu-selected-file {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: var(--ck-cyan-light);
+  border: 1px solid var(--ck-cyan);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text);
+  margin-top: 8px;
+}
+.cu-file-name { font-weight: 600; flex: 1; }
+.cu-file-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0 2px;
+}
+
+/* Footer */
+.cu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: #f4f5f6;
+  box-shadow: 0 -2px 6px rgba(0,0,0,.15);
+}
+
+.cu-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #b0b5ba;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cu-back-btn:hover { background: #f0f0f0; }
+
+.cu-submit-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  background: var(--ck-cyan);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.cu-submit-btn:hover { background: var(--ck-cyan-dark); }
+.cu-submit-btn:disabled {
+  cursor: not-allowed;
+  background: #e9e9ea;
+  color: #a9a8aa;
+}
+
+.cu-hidden-input { display: none; }
+
+/* Direct text input full-page mode */
+.cu-text-page-body {
+  flex: 1;
+  overflow: auto;
+  padding: 0 40px 24px;
+}
+
+.cu-text-title-section {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,.95);
+  padding: 24px 0;
+  z-index: 1;
+}
+
+.cu-text-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cu-text-content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.cu-direct-textarea {
+  min-height: 320px !important;
+  resize: vertical;
+}
+
+.cu-char-count {
+  margin-left: auto;
+  display: inline-block;
+  font-size: 13px;
+  color: #888;
+}
+
+.cu-footer--right {
+  justify-content: flex-end;
+}
