@@ -241,6 +241,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 120px;
   height: 32px;
   padding: 0 8px;
   border-radius: 8px;
