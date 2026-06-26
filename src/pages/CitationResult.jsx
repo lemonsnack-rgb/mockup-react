@@ -97,7 +97,10 @@ export default function CitationResult() {
                     </svg>
                   </span>
                   <span className="cr-stat-label">확인됨</span>
-                  <span className="cr-stat-help">?</span>
+                  <span className="cr-stat-help-wrap">
+                    <span className="cr-stat-help">?</span>
+                    <span className="cr-stat-help-tooltip">참고문헌이 CK DB에서 모든 항목 확인 완료</span>
+                  </span>
                 </div>
                 <div className="cr-stat-count">{detail.summary.confirmed}<span className="cr-stat-unit">건</span></div>
               </div>
@@ -112,7 +115,10 @@ export default function CitationResult() {
                     </svg>
                   </span>
                   <span className="cr-stat-label">부분 확인</span>
-                  <span className="cr-stat-help">?</span>
+                  <span className="cr-stat-help-wrap">
+                    <span className="cr-stat-help">?</span>
+                    <span className="cr-stat-help-tooltip">참고문헌의 일부 항목만 CK DB에서 확인됨</span>
+                  </span>
                 </div>
                 <div className="cr-stat-count">{detail.summary.partial}<span className="cr-stat-unit">건</span></div>
               </div>
@@ -127,7 +133,10 @@ export default function CitationResult() {
                     </svg>
                   </span>
                   <span className="cr-stat-label">미확인</span>
-                  <span className="cr-stat-help">?</span>
+                  <span className="cr-stat-help-wrap">
+                    <span className="cr-stat-help">?</span>
+                    <span className="cr-stat-help-tooltip">참고문헌이 CK DB에서 확인되지 않음</span>
+                  </span>
                 </div>
                 <div className="cr-stat-count">{detail.summary.unconfirmed}<span className="cr-stat-unit">건</span></div>
               </div>
@@ -141,7 +150,10 @@ export default function CitationResult() {
                     </svg>
                   </span>
                   <span className="cr-stat-label">직접 입력</span>
-                  <span className="cr-stat-help">?</span>
+                  <span className="cr-stat-help-wrap">
+                    <span className="cr-stat-help">?</span>
+                    <span className="cr-stat-help-tooltip">검사 없이 직접 입력된 참고문헌</span>
+                  </span>
                 </div>
                 <div className="cr-stat-count">{detail.summary.manual}<span className="cr-stat-unit">건</span></div>
               </div>
